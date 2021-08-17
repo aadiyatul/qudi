@@ -34,7 +34,7 @@ from qtpy import uic
 from interface.data_instream_interface import StreamChannelType
 
 
-class TimeSeriesMainWindow(QtWidgets.QMainWindow):
+class ScopeMainWindow(QtWidgets.QMainWindow):
     """ Create the Main Window based on the *.ui file. """
 
     def __init__(self, **kwargs):
@@ -48,7 +48,7 @@ class TimeSeriesMainWindow(QtWidgets.QMainWindow):
         self.show()
 
 
-class TimeSeriesSelectionDialog(QtWidgets.QDialog):
+class ScopeSelectionDialog(QtWidgets.QDialog):
     """ Create the trace selection dialog based on the *.ui file. """
 
     def __init__(self, **kwargs):
@@ -61,21 +61,21 @@ class TimeSeriesSelectionDialog(QtWidgets.QDialog):
         uic.loadUi(ui_file, self)
 
 
-class TimeSeriesGui(GUIBase):
+class ScopeGui(GUIBase):
     """
-    GUI module to be used in conjunction with TimeSeriesReaderLogic.
+    GUI module to be used in conjunction with ScopeReaderLogic.
 
     Example config for copy-paste:
 
     scope_gui:
-        module.Class: 'scope.scope_gui.TimeSeriesGui'
+        module.Class: 'scope.scope_gui.ScopeGui'
         use_antialias: True  # optional, set to False if you encounter performance issues
         connect:
-            _scope_logic_con: <TimeSeriesReaderLogic_name>
+            _scope_logic_con: <ScopeReaderLogic_name>
     """
 
     # declare connectors
-    _scope_logic_con = Connector(interface='TimeSeriesReaderLogic')
+    _scope_logic_con = Connector(interface='ScopeReaderLogic')
 
     # declare ConfigOptions
     _use_antialias = ConfigOption('use_antialias', default=True)
@@ -117,8 +117,8 @@ class TimeSeriesGui(GUIBase):
 
         #####################
         # Configuring the dock widgets
-        # Use the inherited class 'TimeSeriesMainWindow' to create the GUI window
-        self._mw = TimeSeriesMainWindow()
+        # Use the inherited class 'ScopeMainWindow' to create the GUI window
+        self._mw = ScopeMainWindow()
 
         # Setup dock widgets
         self._mw.centralwidget.hide()
@@ -290,7 +290,7 @@ class TimeSeriesGui(GUIBase):
 
     def _init_trace_view_selection_dialog(self):
         all_channels = tuple(ch.name for ch in self._scope_logic.available_channels)
-        self._vsd = TimeSeriesSelectionDialog()
+        self._vsd = ScopeSelectionDialog()
         self._vsd.setWindowTitle('View Trace Selection')
         self._vsd_widgets = dict()
         layout = QtWidgets.QGridLayout()
@@ -317,7 +317,7 @@ class TimeSeriesGui(GUIBase):
 
     def _init_channel_settings_dialog(self):
         all_channels = tuple(ch.name for ch in self._scope_logic.available_channels)
-        self._csd = TimeSeriesSelectionDialog()
+        self._csd = ScopeSelectionDialog()
         self._csd.setWindowTitle('Data Channel Settings')
         self._csd_widgets = dict()
         layout = QtWidgets.QGridLayout()
