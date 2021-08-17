@@ -1,9 +1,9 @@
 # qudi
 Qudi is a suite of tools for operating multi-instrument and multi-computer laboratory experiments.
-Full description is available at github.com/Ulm-IQO/qudi
+Full description is available at https://github.com/Ulm-IQO/qudi.
 
 ## Installation
-For installation at PhLAM follow https://github.com/Ulm-IQO/qudi/blob/master/documentation/installation_phlam.md
+For installation at PhLAM follow ``documentation/installation_phlam.md``.
 
 
 ## License
