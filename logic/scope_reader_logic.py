@@ -701,7 +701,7 @@ class ScopeReaderLogic(GenericLogic):
                 '{0} ({1})'.format(ch, unit) for ch, unit in self.active_channel_units.items())
 
             data = {header: data_arr.transpose()}
-            filepath = self._savelogic.get_path_for_module(module_name='TimeSeriesReader')
+            filepath = self._savelogic.get_path_for_module(module_name='ScopeReader')
             set_of_units = set(self.active_channel_units.values())
             unit_list = tuple(self.active_channel_units)
             y_unit = 'arb.u.'
@@ -778,7 +778,7 @@ class ScopeReaderLogic(GenericLogic):
             data = {header: self._trace_data[:, :data_offset].transpose()}
 
             if to_file:
-                filepath = self._savelogic.get_path_for_module(module_name='TimeSeriesReader')
+                filepath = self._savelogic.get_path_for_module(module_name='ScopeReader')
                 filelabel = 'data_trace_snapshot_{0}'.format(
                     name_tag) if name_tag else 'data_trace_snapshot'
                 self._savelogic.save_data(data=data,
